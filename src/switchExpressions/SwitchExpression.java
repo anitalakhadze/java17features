@@ -15,26 +15,30 @@ public class SwitchExpression {
         }
     }
 
-    private static String legacySwitch(Object o) {
-        switch (o) {
-            case Cat:
-                return "This is a cat";
-                break;
-            case Dog:
-                return "This is a dog";
-                break;
-            default:
-                return "This is some other animal";
-                break;
-        }
-    }
+//    private static String legacySwitch(Object o) {
+//        switch (o) {
+//            case Cat:
+//                return "This is a cat";
+//                break;
+//            case Dog:
+//                return "This is a dog";
+//                break;
+//            default:
+//                return "This is some other animal";
+//                break;
+//        }
+//    }
 
     private static String modernSwitch(Object o) {
-        return switch (o) {
+        String whichAnimal = switch (o) {
             case Cat cat -> "This is a cat";
             case Dog dog -> "This is a dog";
-            default -> "This is some other animal";
+            default -> {
+                System.out.println("This is some other animal");
+                yield "Unknown animal";
+            }
         };
+        return whichAnimal;
     }
 }
 
